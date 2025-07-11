@@ -8,48 +8,48 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Legal App Light Mode Colors */
-    --background: 244 246 248; /* #F4F6F8 Light Gray */
-    --foreground: 220 226 248; /* #1F2937 Dark Slate */
+    /* Professional Legal App Light Mode */
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 222 84% 4.9%; /* Dark slate */
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 226 248;
+    --card: 0 0% 100%; /* White cards */
+    --card-foreground: 222 84% 4.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 226 248;
+    --popover-foreground: 222 84% 4.9%;
 
-    --primary: 221 100% 59%; /* #2F5DFF Royal Blue */
-    --primary-foreground: 249 250 251; /* #F9FAFB White Smoke */
+    --primary: 221 83% 53%; /* Professional royal blue #2563eb */
+    --primary-foreground: 0 0% 98%; /* Off-white */
 
-    --secondary: 210 22% 49%; /* #2C3E50 Deep Blue Gray */
-    --secondary-foreground: 249 250 251;
+    --secondary: 215 25% 27%; /* Deep blue-gray #374151 */
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 220 13% 91%; /* #E5E7EB Light Gray Border */
-    --muted-foreground: 220 14% 56%; /* #6B7280 Gray */
+    --muted: 220 14% 96%; /* Light gray #f8fafc */
+    --muted-foreground: 215 16% 47%; /* Medium gray #64748b */
 
-    --accent: 232 62% 51%; /* #E8F0FE Soft Blue */
-    --accent-foreground: 220 226 248;
+    --accent: 214 32% 91%; /* Very light blue #e2e8f0 */
+    --accent-foreground: 222 84% 4.9%;
 
-    --destructive: 0 69% 67%; /* #F87171 Soft Red */
-    --destructive-foreground: 249 250 251;
+    --destructive: 0 84% 60%; /* Red for warnings */
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 220 13% 91%; /* #E5E7EB Light Gray Border */
-    --input: 220 13% 91%;
-    --ring: 221 100% 59%;
+    --border: 214 32% 91%; /* Light border */
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
 
     /* Custom Legal App Colors */
-    --chat-bot-bubble: 232 62% 51%; /* #E8F0FE Soft Blue */
-    --chat-user-bubble: 142 76% 73%; /* #D1FAE5 Light Teal */
-    --legal-warning: 0 69% 67%; /* #F87171 Soft Red */
+    --chat-bot-bubble: 214 100% 97%; /* Very light blue #eff6ff */
+    --chat-user-bubble: 142 69% 58%; /* Professional teal #10b981 */
+    --legal-warning: 0 84% 60%; /* Warning red */
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(221 100% 72%));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.1));
-    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--card) / 0.8));
+    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(217 91% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(221 83% 53% / 0.05), hsl(214 100% 97% / 0.8));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(214 32% 98%));
     
     /* Shadows */
-    --shadow-legal: 0 10px 30px -10px hsl(var(--primary) / 0.3);
-    --shadow-card: 0 4px 20px -4px hsl(var(--foreground) / 0.1);
+    --shadow-legal: 0 10px 30px -10px hsl(221 83% 53% / 0.25);
+    --shadow-card: 0 4px 20px -4px hsl(215 25% 27% / 0.1);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -75,47 +75,48 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Legal App Dark Mode Colors */
-    --background: 232 23% 18%; /* #1E1E2F Charcoal Black */
-    --foreground: 249 250 251; /* #F9FAFB White Smoke */
+    /* Professional Legal App Dark Mode */
+    --background: 222 84% 4.9%; /* Dark slate */
+    --foreground: 210 40% 98%; /* Off-white */
 
-    --card: 232 18% 17%; /* #2A2D3E Dark Blue Gray */
-    --card-foreground: 249 250 251;
+    --card: 215 28% 17%; /* Dark blue-gray #1e293b */
+    --card-foreground: 210 40% 98%;
 
-    --popover: 232 18% 17%;
-    --popover-foreground: 249 250 251;
+    --popover: 215 28% 17%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 221 100% 59%; /* #2F5DFF Royal Blue */
-    --primary-foreground: 249 250 251;
+    --primary: 217 91% 60%; /* Brighter blue #3b82f6 */
+    --primary-foreground: 222 84% 4.9%;
 
-    --secondary: 232 18% 17%; /* #2A2D3E Dark Blue Gray */
-    --secondary-foreground: 249 250 251;
+    --secondary: 215 25% 27%; /* Blue-gray #374151 */
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 232 15% 23%; /* #3B3B4F Dark Gray Border */
-    --muted-foreground: 220 14% 69%; /* #9CA3AF Gray */
+    --muted: 215 28% 17%; /* Dark muted */
+    --muted-foreground: 215 20% 65%; /* Light gray */
 
-    --accent: 220 13% 25%; /* #374151 Blue Gray */
-    --accent-foreground: 249 250 251;
+    --accent: 215 25% 27%; /* Accent blue-gray */
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 85% 81%; /* #FCA5A5 Light Red */
-    --destructive-foreground: 232 23% 18%;
+    --destructive: 0 63% 31%; /* Dark red */
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 232 15% 23%; /* #3B3B4F Dark Gray Border */
-    --input: 232 15% 23%;
-    --ring: 221 100% 59%;
+    --border: 215 28% 17%; /* Dark border */
+    --input: 215 28% 17%;
+    --ring: 217 91% 60%;
 
     /* Custom Legal App Dark Colors */
-    --chat-bot-bubble: 220 13% 25%; /* #374151 Blue Gray */
-    --chat-user-bubble: 180 100% 12%; /* #1E3A3A Teal Gray */
-    --legal-warning: 0 85% 81%; /* #FCA5A5 Light Red */
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --chat-bot-bubble: 215 25% 27%; /* Dark blue-gray */
+    --chat-user-bubble: 158 64% 52%; /* Professional teal */
+    --legal-warning: 0 63% 31%; /* Dark warning red */
+    
+    --sidebar-background: 222 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 84% 4.9%;
+    --sidebar-accent: 215 28% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 215 28% 17%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 

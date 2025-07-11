@@ -160,14 +160,14 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
               
               <div
                 className={cn(
-                  "max-w-[80%] p-3 rounded-lg",
+                  "max-w-[80%] p-3 rounded-lg shadow-sm",
                   message.isBot
-                    ? "bg-chat-bot text-foreground"
-                    : "bg-chat-user text-foreground"
+                    ? "bg-chat-bot border border-border text-foreground"
+                    : "bg-primary text-primary-foreground"
                 )}
               >
-                <p className="text-sm">{message.text}</p>
-                <p className="text-xs opacity-70 mt-1">
+                <p className="text-sm leading-relaxed">{message.text}</p>
+                <p className="text-xs opacity-70 mt-2">
                   {message.timestamp.toLocaleTimeString([], { 
                     hour: '2-digit', 
                     minute: '2-digit' 
