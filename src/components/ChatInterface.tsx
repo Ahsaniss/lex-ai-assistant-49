@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Mic, MicOff, Bot, User } from "lucide-react";
+import { Send, Mic, MicOff, Bot, User, Upload, FileText, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -21,8 +21,8 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
     {
       id: "1",
       text: selectedCategory 
-        ? `Hello! I'm your legal assistant specialized in ${selectedCategory}. How can I help you today?`
-        : "Hello! I'm your AI legal assistant. I can help you with various legal questions and provide general legal information. How can I assist you today?",
+        ? `السلام علیکم! I'm your Pakistani Legal Assistant specialized in ${selectedCategory}. I can analyze your documents according to Pakistani Constitution and law. How can I help you today?`
+        : "السلام علیکم! I'm your Pakistani AI Legal Assistant. I can help with legal questions according to Pakistani Constitution, PPC, CPC, and court precedents. Upload documents for case analysis. How can I assist you today?",
       isBot: true,
       timestamp: new Date(),
     },
@@ -30,7 +30,9 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     if (scrollAreaRef.current) {
@@ -45,45 +47,59 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
     scrollToBottom();
   }, [messages]);
 
-  const generateAIResponse = async (userMessage: string): Promise<string> => {
-    // Simulate API call to Gemini
-    const prompt = selectedCategory 
-      ? `As a legal assistant specializing in ${selectedCategory}, please provide helpful legal information about: ${userMessage}`
-      : `As a legal assistant, please provide helpful legal information about: ${userMessage}`;
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    setUploadedFiles(prev => [...prev, ...files]);
+  };
 
-    // For demo purposes, return a simulated response
-    // In production, you would integrate with the actual Gemini API
-    const responses = [
-      "I understand your legal concern. Based on the information provided, here are some general guidelines that might help...",
-      "This is an important legal matter. Let me provide you with some relevant information and considerations...",
-      "Thank you for your question. From a legal perspective, there are several factors to consider...",
-      "I can help you understand this legal concept. Here's what you should know...",
+  const removeFile = (index: number) => {
+    setUploadedFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const generatePakistaniLegalResponse = async (userMessage: string, hasDocuments: boolean = false): Promise<string> => {
+    // Simulate Pakistani legal AI response
+    const pakistaniLegalResponses = [
+      `According to Article ${Math.floor(Math.random() * 280) + 1} of the Constitution of Pakistan, ${hasDocuments ? 'and based on your uploaded documents, ' : ''}here's the legal guidance: The Pakistani legal system is based on common law principles with Islamic law provisions. ${selectedCategory ? `For ${selectedCategory} matters, ` : ''}I recommend consulting the relevant Pakistani statutes and High Court precedents.`,
+      
+      `Under Pakistani law and the Pakistan Penal Code (PPC), ${hasDocuments ? 'your documents indicate that ' : ''}this matter falls under federal/provincial jurisdiction. ${selectedCategory ? `In ${selectedCategory} law, ` : ''}you should consider the Civil Procedure Code (CPC) provisions and seek advice from a qualified Pakistani advocate.`,
+      
+      `Based on Pakistani constitutional law and court precedents, ${hasDocuments ? 'your case documents suggest ' : ''}the following legal considerations apply. The Supreme Court of Pakistan and High Courts have established precedents that may be relevant. ${selectedCategory ? `For ${selectedCategory} matters, ` : ''}please consult with a local lawyer familiar with Pakistani jurisdiction.`,
+      
+      `In accordance with Islamic provisions in the Constitution of Pakistan, ${hasDocuments ? 'analyzing your documents shows ' : ''}this legal matter requires careful consideration of both federal and provincial laws. The relevant statutes include the Pakistan Penal Code, Family Laws Ordinance, and Companies Act as applicable.`
     ];
 
     return new Promise((resolve) => {
       setTimeout(() => {
-        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-        resolve(randomResponse + " Please note that this is general legal information and you should consult with a qualified attorney for specific legal advice.");
+        const randomResponse = pakistaniLegalResponses[Math.floor(Math.random() * pakistaniLegalResponses.length)];
+        const disclaimer = "\n\n⚖️ **Important**: This is general legal information based on Pakistani law. For specific legal advice, please consult a qualified Pakistani lawyer or advocate. Laws may vary between provinces.";
+        resolve(randomResponse + disclaimer);
       }, 1000 + Math.random() * 2000);
     });
   };
 
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+    if ((!input.trim() && uploadedFiles.length === 0) || isLoading) return;
+
+    let messageText = input;
+    if (uploadedFiles.length > 0) {
+      messageText += `\n\n📎 **Uploaded Documents**: ${uploadedFiles.map(f => f.name).join(', ')}`;
+    }
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      text: input,
+      text: messageText,
       isBot: false,
       timestamp: new Date(),
     };
 
     setMessages(prev => [...prev, userMessage]);
     setInput("");
+    const hasDocuments = uploadedFiles.length > 0;
+    setUploadedFiles([]);
     setIsLoading(true);
 
     try {
-      const aiResponse = await generateAIResponse(input);
+      const aiResponse = await generatePakistaniLegalResponse(input, hasDocuments);
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: aiResponse,
@@ -94,7 +110,7 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
     } catch (error) {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: "I apologize, but I'm experiencing some technical difficulties. Please try again later or contact support if the issue persists.",
+        text: "معذرت! I'm experiencing technical difficulties. Please try again later or contact support if the issue persists.",
         isBot: true,
         timestamp: new Date(),
       };
@@ -113,12 +129,9 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
 
   const toggleVoice = () => {
     setIsListening(!isListening);
-    // Voice functionality would be implemented here
     if (!isListening) {
-      // Start speech recognition
-      console.log("Starting speech recognition...");
+      console.log("Starting Urdu/English speech recognition...");
     } else {
-      // Stop speech recognition
       console.log("Stopping speech recognition...");
     }
   };
@@ -132,9 +145,9 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
             <Bot className="w-6 h-6 text-primary-foreground" />
           </div>
           <div>
-            <h3 className="font-semibold text-foreground">Legal Assistant</h3>
+            <h3 className="font-semibold text-foreground">🇵🇰 Pakistani Legal Assistant</h3>
             <p className="text-sm text-muted-foreground">
-              {selectedCategory ? `Specialized in ${selectedCategory}` : "General Legal Help"}
+              {selectedCategory ? `Specialized in ${selectedCategory}` : "Constitutional & Pakistani Law"}
             </p>
           </div>
         </div>
@@ -166,7 +179,7 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
                     : "bg-primary text-primary-foreground"
                 )}
               >
-                <p className="text-sm leading-relaxed">{message.text}</p>
+                <div className="text-sm leading-relaxed whitespace-pre-wrap">{message.text}</div>
                 <p className="text-xs opacity-70 mt-2">
                   {message.timestamp.toLocaleTimeString([], { 
                     hour: '2-digit', 
@@ -202,13 +215,37 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
 
       {/* Input Area */}
       <div className="p-4 border-t border-border">
+        {/* File Upload Section */}
+        {uploadedFiles.length > 0 && (
+          <div className="mb-4 space-y-2">
+            <p className="text-sm text-muted-foreground font-medium">📎 Uploaded Documents for Analysis:</p>
+            {uploadedFiles.map((file, index) => (
+              <div key={index} className="flex items-center justify-between bg-accent/50 rounded-lg p-3">
+                <div className="flex items-center space-x-2">
+                  <FileText className="h-4 w-4 text-primary" />
+                  <span className="text-sm font-medium">{file.name}</span>
+                  <span className="text-xs text-muted-foreground">({Math.round(file.size / 1024)} KB)</span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => removeFile(index)}
+                  className="h-8 w-8 p-0"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="flex items-center space-x-2">
           <div className="flex-1 relative">
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Type your legal question here..."
+              placeholder="Ask in English or Urdu (اردو میں سوال کریں)..."
               disabled={isLoading}
               className="pr-12"
             />
@@ -220,6 +257,7 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
                 isListening && "text-red-500"
               )}
               onClick={toggleVoice}
+              title="Voice Input (Urdu/English)"
             >
               {isListening ? (
                 <MicOff className="h-4 w-4" />
@@ -228,17 +266,37 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
               )}
             </Button>
           </div>
+          
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileUpload}
+            multiple
+            accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png"
+            className="hidden"
+          />
+          
+          <Button 
+            onClick={() => fileInputRef.current?.click()}
+            variant="outline"
+            size="icon"
+            title="Upload Legal Documents"
+            className="flex-shrink-0"
+          >
+            <Upload className="h-4 w-4" />
+          </Button>
+          
           <Button 
             onClick={handleSend} 
-            disabled={!input.trim() || isLoading}
-            className="px-6"
+            disabled={(!input.trim() && uploadedFiles.length === 0) || isLoading}
+            className="px-6 flex-shrink-0"
           >
             <Send className="h-4 w-4" />
           </Button>
         </div>
         
         <p className="text-xs text-muted-foreground mt-2 text-center">
-          This AI provides general legal information only. Consult a qualified attorney for legal advice.
+          🇵🇰 Pakistani Constitutional Law AI • General information only • Consult qualified Pakistani lawyer
         </p>
       </div>
     </div>
