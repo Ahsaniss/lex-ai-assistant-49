@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
 
-## Project info
+# Lex AI Assistant
 
-**URL**: https://lovable.dev/projects/83e63527-e4fc-46ce-bf3e-35b2516b3188
+Lex AI Assistant is a professional AI-powered legal assistant web application designed to help users with legal queries related to Pakistani law. The assistant, named **Advocaid**, provides guidance in both English and Urdu, referencing the Pakistani Constitution, PPC, CPC, and relevant court precedents. The project is built for accessibility, bilingual support, and a modern user experience.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- AI-powered chat interface for legal questions
+- Bilingual support: English and Urdu
+- Category-based expertise (Family Law, Property Law, Criminal Law, Business Law)
+- Responsive design for desktop and mobile
+- Copy, like, and dislike feedback for bot responses
+- Legal disclaimers and professional formatting
 
-**Use Lovable**
+## Technologies Used
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/83e63527-e4fc-46ce-bf3e-35b2516b3188) and start prompting.
+- **Vite** – Fast build tool
+- **React** – UI library
+- **TypeScript** – Type safety
+- **Tailwind CSS** – Utility-first CSS framework
+- **shadcn-ui** – Modern UI components
+- **Google Generative AI (Gemini)** – AI backend
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js (v18 or above recommended)
+- npm
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Installation
 
-Follow these steps:
+1. **Clone the repository:**
+   ```sh
+   git clone <YOUR_GIT_URL>
+   cd lex-ai-assistant
+   ```
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+3. **Set up environment variables:**
+   - Create a `.env` file in the root directory.
+   - Add your Google Generative AI API key:
+     ```env
+     VITE_GOOGLE_AI_API_KEY=your_api_key_here
+     ```
+4. **Start the development server:**
+   ```sh
+   npm run dev
+   ```
+5. **Open the app:**
+   - Visit `http://localhost:5173` in your browser.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Usage
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Select your preferred language (English, Urdu, or Both).
+- Choose a legal category for specialized advice.
+- Type your legal question and receive AI-powered guidance.
+- Copy, like, or dislike bot responses for feedback.
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Deployment
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+You can deploy this project using Vercel, Netlify, or any static hosting provider. For Lovable platform users, simply use the Share → Publish feature.
 
-**Edit a file directly in GitHub**
+## Custom Domain
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+To connect a custom domain, follow your hosting provider's instructions or, if using Lovable, go to Project > Settings > Domains and click Connect Domain.
 
-**Use GitHub Codespaces**
+## License
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+This project is licensed under the MIT License.
 
-## What technologies are used for this project?
+## Legal Disclaimer
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/83e63527-e4fc-46ce-bf3e-35b2516b3188) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Advocaid provides general legal information based on Pakistani law. For specific legal advice, consult a qualified Pakistani advocate licensed by the Pakistan Bar Council.
