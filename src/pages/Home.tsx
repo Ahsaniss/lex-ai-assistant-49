@@ -100,14 +100,14 @@ export const Home = () => {
               Get free AI-based legal help according to Pakistani Constitution and law. Upload documents for case analysis.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 sm:mb-12">
               <Link to="/chat">
                 <Button 
                   size="lg" 
-                  className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 border-0 !bg-gradient-to-r !from-amber-400 !to-orange-500 hover:!from-amber-500 hover:!to-orange-600"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 border-0 !bg-gradient-to-r !from-amber-400 !to-orange-500 hover:!from-amber-500 hover:!to-orange-600"
                 >
                   Start Legal Chat
-                  <ArrowRight className="ml-2 w-5 h-5" />
+                  <ArrowRight className="ml-2 w-4 sm:w-5 h-4 sm:h-5" />
                 </Button>
               </Link>
               
@@ -115,25 +115,25 @@ export const Home = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="px-8 py-4 text-lg backdrop-blur-sm border-white/30 text-white hover:bg-white/10 hover:text-white transition-all duration-300 dark:border-white/30 dark:text-white dark:hover:bg-white/10 border-slate-800/30 text-slate-800 hover:bg-slate-800/10 hover:text-slate-900"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg backdrop-blur-sm border-white/30 text-white hover:bg-white/10 hover:text-white transition-all duration-300"
                 >
                   Browse Law Categories
                 </Button>
               </Link>
             </div>
 
-            <div className="flex items-center justify-center space-x-8 text-sm text-white/80">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-xs sm:text-sm text-white/80 px-4">
               <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-3 py-1 border border-white/20">
-                <CheckCircle className="w-5 h-5 text-green-400" />
-                <span>Pakistani Constitution</span>
+                <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400" />
+                <span className="whitespace-nowrap">Pakistani Constitution</span>
               </div>
               <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-3 py-1 border border-white/20">
-                <CheckCircle className="w-5 h-5 text-green-400" />
-                <span>Urdu & English</span>
+                <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400" />
+                <span className="whitespace-nowrap">Urdu & English</span>
               </div>
               <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-3 py-1 border border-white/20">
-                <CheckCircle className="w-5 h-5 text-green-400" />
-                <span>Document Analysis</span>
+                <CheckCircle className="w-4 sm:w-5 h-4 sm:h-5 text-green-400" />
+                <span className="whitespace-nowrap">Document Analysis</span>
               </div>
             </div>
           </div>
