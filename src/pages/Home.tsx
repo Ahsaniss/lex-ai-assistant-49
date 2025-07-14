@@ -115,7 +115,7 @@ export const Home = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg backdrop-blur-sm border-white/50 text-white hover:bg-white/20 hover:text-white hover:border-white/70 transition-all duration-300"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg backdrop-blur-sm border-white/50 text-slate-900 bg-white/90 hover:bg-white hover:text-slate-900 hover:border-white transition-all duration-300"
                 >
                   Browse Law Categories
                 </Button>
