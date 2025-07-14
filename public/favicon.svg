@@ -4,32 +4,47 @@
       <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#ea580c;stop-opacity:1" />
     </linearGradient>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#081d61;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f2a5a;stop-opacity:1" />
+    </linearGradient>
   </defs>
   
-  <!-- Background circle -->
-  <circle cx="16" cy="16" r="15" fill="#1e1b4b" stroke="#f59e0b" stroke-width="2"/>
+  <!-- Background circle with legal blue -->
+  <circle cx="16" cy="16" r="15" fill="url(#bgGradient)" stroke="#f59e0b" stroke-width="2"/>
   
-  <!-- Scale of Justice -->
+  <!-- Scale of Justice - More detailed -->
   <g transform="translate(16,16)" fill="url(#scaleGradient)">
-    <!-- Central pole -->
-    <rect x="-0.5" y="-8" width="1" height="16" fill="url(#scaleGradient)"/>
+    <!-- Central pole with more detail -->
+    <rect x="-0.8" y="-9" width="1.6" height="18" fill="url(#scaleGradient)" rx="0.8"/>
     
-    <!-- Horizontal bar -->
-    <rect x="-8" y="-7" width="16" height="1" fill="url(#scaleGradient)"/>
+    <!-- Horizontal bar with slight curve -->
+    <rect x="-9" y="-8" width="18" height="1.5" fill="url(#scaleGradient)" rx="0.75"/>
     
-    <!-- Left scale pan -->
-    <path d="M-7,-6 L-5,-6 L-4,-4 L-8,-4 Z" fill="url(#scaleGradient)"/>
-    <line x1="-7" y1="-6" x2="-6" y2="-4" stroke="url(#scaleGradient)" stroke-width="0.5"/>
+    <!-- Left scale pan with chains -->
+    <line x1="-6.5" y1="-8" x2="-6.5" y2="-5" stroke="url(#scaleGradient)" stroke-width="0.5"/>
+    <path d="M-8.5,-5 L-4.5,-5 L-4,-3 L-9,-3 Z" fill="url(#scaleGradient)" stroke="url(#scaleGradient)" stroke-width="0.3"/>
     
-    <!-- Right scale pan -->
-    <path d="M5,-6 L7,-6 L8,-4 L4,-4 Z" fill="url(#scaleGradient)"/>
-    <line x1="7" y1="-6" x2="6" y2="-4" stroke="url(#scaleGradient)" stroke-width="0.5"/>
+    <!-- Right scale pan with chains -->
+    <line x1="6.5" y1="-8" x2="6.5" y2="-5" stroke="url(#scaleGradient)" stroke-width="0.5"/>
+    <path d="M4.5,-5 L8.5,-5 L9,-3 L4,-3 Z" fill="url(#scaleGradient)" stroke="url(#scaleGradient)" stroke-width="0.3"/>
     
-    <!-- Base -->
-    <rect x="-3" y="7" width="6" height="1" fill="url(#scaleGradient)"/>
+    <!-- Decorative base -->
+    <rect x="-4" y="7" width="8" height="2" fill="url(#scaleGradient)" rx="1"/>
+    <rect x="-2" y="8" width="4" height="1" fill="#ea580c" rx="0.5"/>
   </g>
   
-  <!-- Pakistani flag colors accent -->
-  <circle cx="26" cy="6" r="3" fill="#01411C" opacity="0.8"/>
-  <circle cx="26" cy="6" r="2" fill="#ffffff" opacity="0.9"/>
+  <!-- Pakistani flag star accent -->
+  <g transform="translate(26,6)" fill="#ffffff" opacity="0.9">
+    <circle cx="0" cy="0" r="3" fill="#01411C" opacity="0.8"/>
+    <path d="M0,-2 L0.6,-0.6 L2,0 L0.6,0.6 L0,2 L-0.6,0.6 L-2,0 L-0.6,-0.6 Z" fill="#ffffff" opacity="0.9"/>
+  </g>
+  
+  <!-- Legal document accent -->
+  <g transform="translate(6,26)" fill="#ffffff" opacity="0.7">
+    <rect x="-1.5" y="-1.5" width="3" height="3" fill="#f59e0b" rx="0.3"/>
+    <rect x="-1" y="-1" width="2" height="0.3" fill="#ffffff"/>
+    <rect x="-1" y="-0.3" width="2" height="0.3" fill="#ffffff"/>
+    <rect x="-1" y="0.4" width="2" height="0.3" fill="#ffffff"/>
+  </g>
 </svg>
