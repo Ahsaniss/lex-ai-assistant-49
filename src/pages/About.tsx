@@ -28,7 +28,7 @@ export const About = () => {
 
   const techStack = [
     "React.js", "TypeScript", "Gemini AI", "Tailwind CSS", 
-    "Natural Language Processing", "Legal Database Integration"
+    "Pakistani Legal Database", "Urdu Language Processing", "Constitutional Law AI"
   ];
 
   const teamMembers = [
@@ -51,11 +51,11 @@ export const About = () => {
           </div>
           
           <h1 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-6">
-            About LegalBot
+            About 🇵🇰 Advocaid
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            We're on a mission to democratize legal assistance by making professional 
+            We're on a mission to democratize Pakistani legal assistance by making professional 
             legal guidance accessible to everyone through the power of artificial intelligence.
           </p>
         </div>
@@ -68,10 +68,10 @@ export const About = () => {
           <CardContent className="text-center">
             <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Legal help shouldn't be a luxury. We believe everyone deserves access to quality 
-              legal information and guidance. LegalBot bridges the gap between complex legal 
-              systems and everyday people who need help understanding their rights and options. 
-              Our AI assistant provides instant, reliable legal information to help you make 
-              informed decisions about your legal matters.
+              Pakistani legal information and guidance. 🇵🇰 Advocaid bridges the gap between complex Pakistani legal 
+              systems and everyday people who need help understanding their rights and options under Pakistani law. 
+              Our AI assistant provides instant, reliable legal information based on Pakistani Constitution, PPC, CPC, 
+              and court precedents to help you make informed decisions about your legal matters.
             </p>
           </CardContent>
         </Card>
@@ -79,7 +79,7 @@ export const About = () => {
         {/* What We Do */}
         <div className="mb-16">
           <h2 className="text-3xl font-heading font-bold text-center text-foreground mb-12">
-            What LegalBot Does
+            What 🇵🇰 Advocaid Does
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -112,10 +112,10 @@ export const About = () => {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                LegalBot is built using cutting-edge technologies to ensure reliable, 
-                fast, and secure legal assistance. Our AI is powered by Google's Gemini, 
-                trained on extensive legal databases and constantly updated to provide 
-                accurate information.
+                🇵🇰 Advocaid is built using cutting-edge technologies to ensure reliable, 
+                fast, and secure Pakistani legal assistance. Our AI is powered by Google's Gemini, 
+                trained on extensive Pakistani legal databases including Constitution, PPC, CPC, 
+                and constantly updated to provide accurate information specific to Pakistani law.
               </p>
               
               <div className="flex flex-wrap gap-2">
@@ -201,14 +201,14 @@ export const About = () => {
           <CardContent>
             <div className="space-y-4 text-sm text-foreground/80">
               <p>
-                <strong>LegalBot is an AI-powered legal information service</strong> that provides 
+                <strong>🇵🇰 Advocaid is an AI-powered Pakistani legal information service</strong> that provides 
                 general legal information and educational content. We do not provide legal advice, 
                 and use of our service does not create an attorney-client relationship.
               </p>
               
               <p>
                 <strong>Not a Substitute for Professional Legal Advice:</strong> The information 
-                provided by LegalBot should not be used as a substitute for professional legal 
+                provided by Advocaid should not be used as a substitute for professional legal 
                 advice from a qualified attorney. Laws vary by jurisdiction and are subject to change.
               </p>
               
@@ -228,26 +228,26 @@ export const About = () => {
 
         {/* Footer CTA */}
         <div className="text-center mt-16">
-          <div className="bg-primary text-primary-foreground rounded-xl p-8 max-w-4xl mx-auto">
+          <div className="bg-gradient-to-r from-slate-800 to-slate-900 dark:from-slate-900 dark:to-slate-950 text-white rounded-xl p-8 max-w-4xl mx-auto border border-slate-700">
             <h2 className="text-2xl font-heading font-bold mb-4 flex items-center justify-center space-x-2">
-              <Heart className="w-6 h-6" />
-              <span>Ready to Get Legal Help?</span>
+              <Heart className="w-6 h-6 text-red-400" />
+              <span>Ready to Get Pakistani Legal Help?</span>
             </h2>
-            <p className="text-primary-foreground/90 mb-6">
-              Join thousands of users who trust LegalBot for their legal questions
+            <p className="text-white/90 mb-6">
+              Join thousands of Pakistanis who trust 🇵🇰 Advocaid for their legal questions
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/chat"
-                className="bg-primary-foreground text-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary-foreground/90 transition-colors"
+                className="bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                Start Chatting Now
+                Start Legal Chat Now
               </a>
               <a
                 href="/categories"
-                className="border border-primary-foreground/30 text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary-foreground/10 transition-colors"
+                className="border border-white/30 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
               >
-                Browse Categories
+                Browse Law Categories
               </a>
             </div>
           </div>

@@ -81,51 +81,58 @@ export const Home = () => {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${highCourtImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/60 via-slate-800/50 to-slate-900/60" />
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <div className="flex justify-center mb-6">
-              <div className="p-4 bg-primary/20 rounded-full backdrop-blur-sm">
-                <Scale className="w-16 h-16 text-primary" />
+              <div className="p-4 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full backdrop-blur-sm border border-amber-300 shadow-lg">
+                <Scale className="w-16 h-16 text-white" />
               </div>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-heading font-bold text-foreground mb-6">
-              🇵🇰 Pakistani Legal Assistant
+            <h1 className="text-4xl md:text-6xl font-heading font-bold text-white mb-6 drop-shadow-xl">
+              Advocaid Legal Assistant
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed drop-shadow-lg">
               Get free AI-based legal help according to Pakistani Constitution and law. Upload documents for case analysis.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
               <Link to="/chat">
-                <Button size="lg" className="px-8 py-4 text-lg font-semibold">
+                <Button 
+                  size="lg" 
+                  className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 border-0 !bg-gradient-to-r !from-amber-400 !to-orange-500 hover:!from-amber-500 hover:!to-orange-600"
+                >
                   Start Legal Chat
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               
               <Link to="/categories">
-                <Button variant="outline" size="lg" className="px-8 py-4 text-lg backdrop-blur-sm">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="px-8 py-4 text-lg backdrop-blur-sm border-white/30 text-white hover:bg-white/10 hover:text-white transition-all duration-300 dark:border-white/30 dark:text-white dark:hover:bg-white/10 border-slate-800/30 text-slate-800 hover:bg-slate-800/10 hover:text-slate-900"
+                >
                   Browse Law Categories
                 </Button>
               </Link>
             </div>
 
-            <div className="flex items-center justify-center space-x-8 text-sm text-muted-foreground">
-              <div className="flex items-center space-x-2 bg-background/80 rounded-full px-3 py-1 backdrop-blur-sm">
-                <CheckCircle className="w-5 h-5 text-green-500" />
+            <div className="flex items-center justify-center space-x-8 text-sm text-white/80">
+              <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-3 py-1 border border-white/20">
+                <CheckCircle className="w-5 h-5 text-green-400" />
                 <span>Pakistani Constitution</span>
               </div>
-              <div className="flex items-center space-x-2 bg-background/80 rounded-full px-3 py-1 backdrop-blur-sm">
-                <CheckCircle className="w-5 h-5 text-green-500" />
+              <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-3 py-1 border border-white/20">
+                <CheckCircle className="w-5 h-5 text-green-400" />
                 <span>Urdu & English</span>
               </div>
-              <div className="flex items-center space-x-2 bg-background/80 rounded-full px-3 py-1 backdrop-blur-sm">
-                <CheckCircle className="w-5 h-5 text-green-500" />
+              <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-3 py-1 border border-white/20">
+                <CheckCircle className="w-5 h-5 text-green-400" />
                 <span>Document Analysis</span>
               </div>
             </div>
@@ -304,7 +311,11 @@ export const Home = () => {
 
           <div className="text-center mt-8">
             <Link to="/categories">
-              <Button variant="outline" size="lg">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              >
                 View All Categories
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
@@ -343,18 +354,21 @@ export const Home = () => {
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${pakistanLaw})` }}
         >
-          <div className="absolute inset-0 bg-primary/90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-800/60 to-slate-900/70" />
         </div>
         
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-primary-foreground">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 text-white drop-shadow-lg">
             Ready to Get Pakistani Legal Help?
           </h2>
-          <p className="text-xl mb-8 text-primary-foreground/90">
+          <p className="text-xl mb-8 text-white/95 drop-shadow-md">
             Start your conversation with our Pakistani AI legal assistant today
           </p>
           <Link to="/chat">
-            <Button size="lg" variant="secondary" className="px-8 py-4 text-lg font-semibold">
+            <Button 
+              size="lg" 
+              className="px-8 py-4 text-lg font-semibold bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 border-0"
+            >
               Start Legal Chat Now
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>

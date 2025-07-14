@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Professional Legal App Light Mode */
+    /* Professional Legal App Light Mode with #080278 theme */
     --background: 0 0% 100%; /* Pure white */
     --foreground: 222 84% 4.9%; /* Dark slate */
 
@@ -18,38 +18,38 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222 84% 4.9%;
 
-    --primary: 221 83% 53%; /* Professional royal blue #2563eb */
+    --primary: 244 95% 25%; /* Deep navy blue #080278 */
     --primary-foreground: 0 0% 98%; /* Off-white */
 
-    --secondary: 215 25% 27%; /* Deep blue-gray #374151 */
+    --secondary: 244 50% 40%; /* Lighter navy variant */
     --secondary-foreground: 0 0% 98%;
 
     --muted: 220 14% 96%; /* Light gray #f8fafc */
     --muted-foreground: 215 16% 47%; /* Medium gray #64748b */
 
-    --accent: 214 32% 91%; /* Very light blue #e2e8f0 */
-    --accent-foreground: 222 84% 4.9%;
+    --accent: 244 30% 90%; /* Very light navy #e8e7f3 */
+    --accent-foreground: 244 95% 25%;
 
     --destructive: 0 84% 60%; /* Red for warnings */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 214 32% 91%; /* Light border */
-    --input: 214 32% 91%;
-    --ring: 221 83% 53%;
+    --border: 244 30% 90%; /* Light navy border */
+    --input: 244 30% 90%;
+    --ring: 244 95% 25%;
 
-    /* Custom Legal App Colors */
-    --chat-bot-bubble: 214 100% 97%; /* Very light blue #eff6ff */
-    --chat-user-bubble: 142 69% 58%; /* Professional teal #10b981 */
+    /* Custom Legal App Colors with #080278 theme */
+    --chat-bot-bubble: 244 100% 97%; /* Very light navy #f4f4ff */
+    --chat-user-bubble: 244 95% 25%; /* Deep navy #080278 */
     --legal-warning: 0 84% 60%; /* Warning red */
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(217 91% 60%));
-    --gradient-hero: linear-gradient(135deg, hsl(221 83% 53% / 0.05), hsl(214 100% 97% / 0.8));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(214 32% 98%));
+    /* Gradients with #080278 */
+    --gradient-primary: linear-gradient(135deg, hsl(244 95% 25%), hsl(244 80% 35%));
+    --gradient-hero: linear-gradient(135deg, hsl(244 95% 25% / 0.05), hsl(244 100% 97% / 0.8));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(244 30% 98%));
     
-    /* Shadows */
-    --shadow-legal: 0 10px 30px -10px hsl(221 83% 53% / 0.25);
-    --shadow-card: 0 4px 20px -4px hsl(215 25% 27% / 0.1);
+    /* Shadows with navy tint */
+    --shadow-legal: 0 10px 30px -10px hsl(244 95% 25% / 0.25);
+    --shadow-card: 0 4px 20px -4px hsl(244 50% 40% / 0.1);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -58,65 +58,58 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
+    --sidebar-foreground: 244 50% 26.1%;
+    --sidebar-primary: 244 95% 25%;
     --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 244 30% 95.9%;
+    --sidebar-accent-foreground: 244 95% 25%;
+    --sidebar-border: 244 30% 91%;
+    --sidebar-ring: 244 95% 25%;
   }
 
   .dark {
-    /* Professional Legal App Dark Mode */
-    --background: 222 84% 4.9%; /* Dark slate */
+    /* Professional Legal App Dark Mode with #080278 theme */
+    --background: 244 95% 4.9%; /* Dark navy */
     --foreground: 210 40% 98%; /* Off-white */
 
-    --card: 215 28% 17%; /* Dark blue-gray #1e293b */
+    --card: 244 50% 12%; /* Dark navy-gray */
     --card-foreground: 210 40% 98%;
 
-    --popover: 215 28% 17%;
+    --popover: 244 50% 12%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 60%; /* Brighter blue #3b82f6 */
-    --primary-foreground: 222 84% 4.9%;
+    --primary: 244 80% 60%; /* Brighter navy blue */
+    --primary-foreground: 244 95% 4.9%;
 
-    --secondary: 215 25% 27%; /* Blue-gray #374151 */
+    --secondary: 244 40% 25%; /* Navy-gray */
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 215 28% 17%; /* Dark muted */
-    --muted-foreground: 215 20% 65%; /* Light gray */
+    --muted: 244 50% 12%; /* Dark muted navy */
+    --muted-foreground: 244 20% 65%; /* Light navy-gray */
 
-    --accent: 215 25% 27%; /* Accent blue-gray */
+    --accent: 244 40% 25%; /* Accent navy-gray */
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 63% 31%; /* Dark red */
     --destructive-foreground: 210 40% 98%;
 
-    --border: 215 28% 17%; /* Dark border */
-    --input: 215 28% 17%;
-    --ring: 217 91% 60%;
+    --border: 244 50% 12%; /* Dark navy border */
+    --input: 244 50% 12%;
+    --ring: 244 80% 60%;
 
-    /* Custom Legal App Dark Colors */
-    --chat-bot-bubble: 215 25% 27%; /* Dark blue-gray */
-    --chat-user-bubble: 158 64% 52%; /* Professional teal */
+    /* Custom Legal App Dark Colors with #080278 theme */
+    --chat-bot-bubble: 244 40% 25%; /* Dark navy-gray */
+    --chat-user-bubble: 244 80% 60%; /* Bright navy */
     --legal-warning: 0 63% 31%; /* Dark warning red */
     
-    --sidebar-background: 222 84% 4.9%;
+    --sidebar-background: 244 95% 4.9%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 222 84% 4.9%;
-    --sidebar-accent: 215 28% 17%;
+    --sidebar-primary: 244 80% 60%;
+    --sidebar-primary-foreground: 244 95% 4.9%;
+    --sidebar-accent: 244 50% 12%;
     --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 215 28% 17%;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-border: 244 50% 12%;
+    --sidebar-ring: 244 80% 60%;
   }
 }
 
@@ -133,6 +126,51 @@ All colors MUST be HSL.
   .bg-grid-pattern {
     background-image: radial-gradient(circle, hsl(var(--foreground) / 0.1) 1px, transparent 1px);
     background-size: 20px 20px;
+  }
+
+  /* Custom styles for chat interface */
+  .chat-message {
+    @apply transition-all duration-200 hover:shadow-sm;
+  }
+
+  .chat-message:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Markdown styles for AI responses */
+  .prose {
+    @apply max-w-none;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3 {
+    @apply text-foreground font-semibold;
+  }
+
+  .prose p {
+    @apply text-foreground leading-relaxed;
+  }
+
+  .prose strong {
+    @apply text-foreground font-semibold;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply text-foreground;
+  }
+
+  .prose blockquote {
+    @apply border-l-primary bg-muted/30 text-foreground;
+  }
+
+  .prose code {
+    @apply bg-muted text-foreground px-1 py-0.5 rounded text-sm;
+  }
+
+  .prose pre {
+    @apply bg-muted text-foreground;
   }
 }
 
@@ -158,5 +196,127 @@ All colors MUST be HSL.
   
   .transition-spring {
     transition: var(--transition-spring);
+  }
+  
+  .shadow-3xl {
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+  }
+  
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+  }
+  
+  /* Updated chat components with #080278 theme */
+  .chat-message-bot {
+    background: linear-gradient(135deg, #080278 0%, #1a1a9e 50%, #2d2daa 100%);
+  }
+  
+  .chat-message-user {
+    background: linear-gradient(135deg, #080278 0%, #0f0f8a 50%, #1b1b96 100%);
+  }
+  
+  .chat-header {
+    background: linear-gradient(135deg, #080278 0%, #1a1a9e 50%, #2d2daa 100%);
+  }
+  
+  .chat-container {
+    background: linear-gradient(135deg, #080278 0%, #1a1a9e 50%, #2d2daa 100%);
+  }
+
+  /* Enhanced Navbar Styles with #080278 theme */
+  .navbar-gradient {
+    background: linear-gradient(135deg, 
+      rgba(8, 2, 120, 0.9) 0%, 
+      rgba(26, 26, 158, 0.9) 35%, 
+      rgba(45, 45, 170, 0.9) 100%
+    );
+  }
+
+  .navbar-gradient.dark {
+    background: linear-gradient(135deg, 
+      rgba(8, 2, 120, 0.9) 0%, 
+      rgba(15, 15, 138, 0.9) 35%, 
+      rgba(27, 27, 150, 0.9) 100%
+    );
+  }
+
+  /* Logo glow effect - Navy theme */
+  .logo-glow {
+    filter: drop-shadow(0 0 10px rgba(8, 2, 120, 0.5));
+  }
+
+  /* Navigation link hover effects - Navy theme */
+  .nav-link-hover {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link-hover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent, rgba(8, 2, 120, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+
+  .nav-link-hover:hover::before {
+    transform: translateX(100%);
+  }
+
+  /* Theme toggle animation - Navy theme */
+  .theme-toggle {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(135deg, rgba(8, 2, 120, 0.2), rgba(26, 26, 158, 0.2));
+  }
+
+  .theme-toggle:hover {
+    transform: scale(1.1) rotate(10deg);
+    background: linear-gradient(135deg, rgba(8, 2, 120, 0.3), rgba(26, 26, 158, 0.3));
+  }
+
+  /* Mobile menu animation - Navy theme */
+  .mobile-menu-enter {
+    animation: slideDown 0.3s ease-out;
+    background: linear-gradient(180deg, 
+      rgba(8, 2, 120, 0.1) 0%, 
+      rgba(26, 26, 158, 0.1) 100%
+    );
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Active link pulse effect - Navy theme */
+  .active-link-pulse {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(8, 2, 120, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(8, 2, 120, 0.8), 0 0 30px rgba(8, 2, 120, 0.6);
+    }
+  }
+
+  /* Navbar border glow effect - Navy theme */
+  .navbar-border-glow {
+    border-bottom: 1px solid rgba(8, 2, 120, 0.3);
+    box-shadow: 0 1px 0 rgba(8, 2, 120, 0.1);
+  }
+
+  .dark .navbar-border-glow {
+    border-bottom: 1px solid rgba(26, 26, 158, 0.5);
+    box-shadow: 0 1px 0 rgba(26, 26, 158, 0.2);
   }
 }

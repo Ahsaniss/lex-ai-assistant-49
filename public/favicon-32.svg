@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Background -->
+  <rect width="32" height="32" fill="#1e1b4b" rx="6"/>
+  
+  <!-- Scale of Justice in Pakistani colors -->
+  <g transform="translate(16,16)" fill="#f59e0b" stroke="#f59e0b" stroke-width="0.5">
+    <!-- Central pole -->
+    <line x1="0" y1="-10" x2="0" y2="10" stroke-width="1.5"/>
+    
+    <!-- Horizontal bar -->
+    <line x1="-8" y1="-7" x2="8" y2="-7" stroke-width="1"/>
+    
+    <!-- Left scale -->
+    <circle cx="-6" cy="-5" r="3" fill="none" stroke-width="1"/>
+    <line x1="-8" y1="-7" x2="-6" y2="-8"/>
+    
+    <!-- Right scale -->
+    <circle cx="6" cy="-5" r="3" fill="none" stroke-width="1"/>
+    <line x1="8" y1="-7" x2="6" y2="-8"/>
+    
+    <!-- Base -->
+    <rect x="-4" y="8" width="8" height="2" fill="#f59e0b"/>
+  </g>
+  
+  <!-- Small Pakistani flag accent -->
+  <rect x="24" y="4" width="4" height="3" fill="#01411C"/>
+  <rect x="24" y="4" width="2" height="3" fill="#ffffff"/>
+</svg>

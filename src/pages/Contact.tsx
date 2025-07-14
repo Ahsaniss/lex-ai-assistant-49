@@ -51,7 +51,7 @@ export const Contact = () => {
     {
       icon: MessageSquare,
       title: "General Inquiries",
-      description: "Questions about LegalBot or how our AI assistant works",
+      description: "Questions about Advocaid or how our Pakistani legal AI assistant works",
       action: "Send Message"
     },
     {
@@ -72,7 +72,7 @@ export const Contact = () => {
     {
       icon: Mail,
       title: "Email Support",
-      value: "support@legalbot.com",
+      value: "support@advocaid.pk",
       description: "We respond within 24 hours"
     },
     {
