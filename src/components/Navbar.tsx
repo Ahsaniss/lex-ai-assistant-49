@@ -25,9 +25,9 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-md bg-gradient-to-r from-[#080278]/95 via-[#1a1a9e]/95 to-[#2d2daa]/95 dark:from-[#080278]/95 dark:via-[#0f0f8a]/95 dark:to-[#1b1b96]/95 border-b border-amber-400/30 dark:border-amber-500/40 shadow-xl shadow-[#080278]/30">
+    <nav className="sticky top-0 z-50 backdrop-blur-md bg-[#06164a]/95 dark:bg-[#06164a]/95 border-b border-amber-400/30 dark:border-amber-500/40 shadow-xl shadow-[#081d61]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-24 lg:h-28">
           {/* Enhanced Logo */}
           <Link to="/" className="flex items-center space-x-4 group">
             <div className="relative">
