@@ -92,11 +92,11 @@ export const Home = () => {
               </div>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-heading font-bold text-white mb-6 drop-shadow-xl">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 drop-shadow-xl leading-tight">
               Advocaid Legal Assistant
             </h1>
             
-            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed drop-shadow-lg">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed drop-shadow-lg px-2">
               Get free AI-based legal help according to Pakistani Constitution and law. Upload documents for case analysis.
             </p>
             
