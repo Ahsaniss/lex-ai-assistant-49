@@ -367,35 +367,45 @@ Format your response with proper headings and structure for easy reading.`;
   return (
     <div className="flex flex-col h-full max-h-[600px] border-0 rounded-xl bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-indigo-900 dark:to-purple-900 shadow-2xl overflow-hidden backdrop-blur-sm">
       {/* Chat Header */}
-      <div className="flex items-center justify-between p-4 border-b-0 bg-gradient-to-r from-[#080278] via-[#1a1a9e] to-[#2d2daa] text-white shadow-lg relative overflow-hidden">
+      <div className="border-b-0 bg-gradient-to-r from-[#080278] via-[#1a1a9e] to-[#2d2daa] text-white shadow-lg relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#080278]/20 via-[#1a1a9e]/20 to-[#2d2daa]/20 backdrop-blur-sm"></div>
-        <div className="flex items-center space-x-3 relative z-10">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg border-2 border-white/30">
-            <Bot className="w-7 h-7 text-white drop-shadow-sm" />
+        
+        {/* Main Header Row */}
+        <div className="flex items-center justify-between p-4 relative z-10">
+          <div className="flex items-center space-x-3 flex-1 min-w-0">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg border-2 border-white/30 flex-shrink-0">
+              <Bot className="w-7 h-7 text-white drop-shadow-sm" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <h3 className="font-bold text-lg text-white flex items-center space-x-2 drop-shadow-sm">
+                <span>🇵🇰 Advocaid</span>
+                {selectedCategory && (
+                  <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-full border border-white/30 shadow-sm hidden sm:inline">
+                    {selectedCategory}
+                  </span>
+                )}
+              </h3>
+              <p className="text-sm text-white/80 truncate">
+                {selectedCategory ? `Specialized in ${selectedCategory}` : "Pakistani Legal AI Assistant"}
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 className="font-bold text-lg text-white flex items-center space-x-2 drop-shadow-sm">
-              <span>🇵🇰 Advocaid</span>
-              {selectedCategory && (
-                <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-full border border-white/30 shadow-sm">
-                  {selectedCategory}
-                </span>
-              )}
-            </h3>
-            <p className="text-sm text-white/80">
-              {selectedCategory ? `Specialized in ${selectedCategory}` : "Pakistani Legal AI Assistant"}
-            </p>
+          
+          {/* Desktop Status */}
+          <div className="hidden md:flex items-center space-x-2">
+            <div className="w-3 h-3 bg-lime-400 rounded-full animate-pulse shadow-sm" />
+            <span className="text-xs text-lime-200 font-medium">Online</span>
           </div>
         </div>
-        
-        <div className="flex items-center space-x-4 relative z-10">
-          {/* Language Selection */}
-          <div className="flex items-center space-x-2">
+
+        {/* Mobile-Friendly Language Selection Bar */}
+        <div className="px-4 pb-3 flex items-center justify-between relative z-10">
+          <div className="flex items-center space-x-2 flex-1">
             <span className="text-xs text-white/80 font-medium">Language:</span>
             <select 
               value={selectedLanguage} 
               onChange={(e) => setSelectedLanguage(e.target.value as 'english' | 'urdu' | 'both')}
-              className="text-xs bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
+              className="text-xs bg-white/10 backdrop-blur-sm border border-white/30 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white/50 transition-all min-w-0 flex-1 max-w-[200px]"
             >
               <option value="both" className="text-gray-800">🌐 Both (English + اردو)</option>
               <option value="english" className="text-gray-800">🇬🇧 English Only</option>
@@ -403,7 +413,8 @@ Format your response with proper headings and structure for easy reading.`;
             </select>
           </div>
           
-          <div className="flex items-center space-x-2">
+          {/* Mobile Status */}
+          <div className="flex md:hidden items-center space-x-2">
             <div className="w-3 h-3 bg-lime-400 rounded-full animate-pulse shadow-sm" />
             <span className="text-xs text-lime-200 font-medium">Online</span>
           </div>
