@@ -7,8 +7,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from '@emailjs/browser';
 
 export const Contact = () => {
+  // EmailJS Configuration
+  const serviceID = 'service_your_service_id'; // Replace with your EmailJS service ID
+  const templateID = 'template_your_template_id'; // Replace with your EmailJS template ID
+  const publicKey = '84RrI4uYEZ72RmStk'; // Your provided public key
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,23 +34,51 @@ export const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      // EmailJS send method
+      const result = await emailjs.send(
+        serviceID,
+        templateID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          category: formData.category,
+          message: formData.message,
+          contact_method: formData.contactMethod,
+          to_name: 'Ahsan', // Your name
+        },
+        publicKey
+      );
 
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for contacting us. We'll get back to you within 24 hours.",
-    });
+      console.log('Email sent successfully:', result.text);
 
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      category: "",
-      message: "",
-      contactMethod: "email"
-    });
-    setIsSubmitting(false);
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        category: "",
+        message: "",
+        contactMethod: "email"
+      });
+
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      
+      toast({
+        title: "Message Failed to Send",
+        description: "There was an error sending your message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactOptions = [
