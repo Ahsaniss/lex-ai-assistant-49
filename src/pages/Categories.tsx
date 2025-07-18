@@ -137,21 +137,21 @@ export const Categories = () => {
         </div>
 
         {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {legalCategories.map((category) => (
-            <div key={category.id} className="group">
+            <div key={category.id} className="group flex flex-col">
               <CategoryCard
                 title={category.title}
                 description={category.description}
                 icon={category.icon}
                 onClick={() => handleCategoryClick(category)}
-                className="h-full"
+                className="flex-1"
               />
               
               {/* Info Link */}
               <button
                 onClick={() => handleInfoClick(category)}
-                className="w-full mt-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                className="mt-4 p-2 text-sm text-primary hover:text-primary/80 hover:bg-primary/5 rounded-md transition-all duration-200 text-center border border-transparent hover:border-primary/20"
               >
                 Learn more about {category.title} →
               </button>
