@@ -11,9 +11,13 @@ import emailjs from '@emailjs/browser';
 
 export const Contact = () => {
   // EmailJS Configuration
-  const serviceID = 'service_your_service_id'; // Replace with your EmailJS service ID
-  const templateID = 'template_your_template_id'; // Replace with your EmailJS template ID
-  const publicKey = '84RrI4uYEZ72RmStk'; // Your provided public key
+  // IMPORTANT: You need to get these IDs from the EmailJS dashboard:
+  // 1. Login to EmailJS.com with the account that has the API keys
+  // 2. Go to "Email Services" and get your Service ID (service_xxxxxxx)
+  // 3. Go to "Email Templates" and get your Template ID (template_xxxxxxx)
+  const serviceID = 'service_98alvg4'; // ✅ Your actual Service ID 
+  const templateID = 'template_mn8aqbp'; // ❌ Replace with Template ID from EmailJS dashboard
+  const publicKey = '84RrI4uYEZ72RmStk'; // ✅ Provided API key
 
   const [formData, setFormData] = useState({
     name: "",
