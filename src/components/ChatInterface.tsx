@@ -155,8 +155,13 @@ const MessageBubble = ({ message, onCopy, onFeedback }: {
 };
 
 // Initialize Google AI with your API key
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_AI_API_KEY || "AIzaSyDWb-XSQKC-LraQ6R0KnfodNgXLaBlea2k");
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_AI_API_KEY || "AIzaSyCC5MM-ggzIxAvpJj-q0JcEL2MxsjVzWHI");
+const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+// Add constants for consistent messaging
+const NETWORK_ERROR_MESSAGE = "🇵🇰 Advocaid - Network Error: Unable to connect to the AI service. Please check your internet connection and try again.";
+const NETWORK_ERROR_BANNER = "Network Error: Unable to connect to the AI service. Please check your internet connection and try again.";
+const LEGAL_DISCLAIMER = "⚖️ Legal Disclaimer: This analysis is provided by Advocaid and is based on Pakistani Constitution, relevant laws, and court precedents. For specific legal advice, consult a qualified Pakistani advocate licensed by Pakistan Bar Council.";
 
 export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
   const [selectedLanguage, setSelectedLanguage] = useState<'english' | 'urdu' | 'both'>('both');
@@ -174,6 +179,10 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  // New: network error state to show a banner + message
+  const [networkError, setNetworkError] = useState<string | null>(null);
+  // New: keep last user message so Retry can resend it
+  const lastUserMessageRef = useRef<string | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -274,6 +283,9 @@ Format your response with proper headings and structure for easy reading.`;
       const response = await result.response;
       const text = response.text();
       
+      // Clear any existing network error on success
+      if (networkError) setNetworkError(null);
+      
       console.log('✅ AI Response received successfully');
       console.log('📄 Response length:', text.length);
       
@@ -282,51 +294,59 @@ Format your response with proper headings and structure for easy reading.`;
       
       return text + disclaimer;
     } catch (error) {
+      // mark network error state for UI
+      const errMsg = (error && (error as any).message) ? (error as any).message : String(error);
       console.error('❌ Error generating AI response:', error);
-      console.error('🔍 Error details:', {
-        name: error.name,
-        message: error.message,
-        stack: error.stack
-      });
-      
-      // Check if it's an API key issue
-      if (error.message && error.message.includes('API_KEY')) {
-        console.error('🔑 API Key Issue detected');
-        return `🇵🇰 **Advocaid - API Configuration Error**: There seems to be an issue with the AI service configuration. Please check the API key setup.\n\n⚖️ **Legal Disclaimer**: This analysis is provided by Advocaid and is based on Pakistani Constitution, relevant laws, and court precedents. For specific legal advice, consult a qualified Pakistani advocate licensed by Pakistan Bar Council.`;
+
+      if (errMsg && (errMsg.includes('fetch') || errMsg.toLowerCase().includes('network') || errMsg.includes('Failed to fetch'))) {
+        // Set banner message only (no disclaimer in banner)
+        setNetworkError(NETWORK_ERROR_BANNER);
       }
       
-      // Check if it's a network issue
-      if (error.message && (error.message.includes('fetch') || error.message.includes('network'))) {
+      // Check if it's an API key issue
+      if (error && (error as any).message && (error as any).message.includes('API_KEY')) {
+        console.error('🔑 API Key Issue detected');
+        return `🇵🇰 **Advocaid - API Configuration Error**: There seems to be an issue with the AI service configuration. Please check the API key setup.\n\n${LEGAL_DISCLAIMER}`;
+      }
+      
+      // Check if it's a network issue (return the combined message when detected)
+      if (error && (error as any).message && ((error as any).message.includes('fetch') || (error as any).message.includes('network') || errMsg.includes('Failed to fetch'))) {
         console.error('🌐 Network Issue detected');
-        return `🇵🇰 **Advocaid - Network Error**: Unable to connect to the AI service. Please check your internet connection and try again.\n\n⚖️ **Legal Disclaimer**: This analysis is provided by Advocaid and is based on Pakistani Constitution, relevant laws, and court precedents. For specific legal advice, consult a qualified Pakistani advocate licensed by Pakistan Bar Council.`;
+        // Return full message with disclaimer for chat bubble
+        return `${NETWORK_ERROR_MESSAGE}\n\n${LEGAL_DISCLAIMER}`;
       }
       
       // Fallback response if AI fails
       const fallbackResponse = selectedCategory 
-        ? `🇵🇰 **Advocaid - ${selectedCategory} Legal Guidance**: I apologize, but I'm experiencing technical difficulties with the AI service. Error: ${error.message}. Please try again in a moment. For immediate assistance, please consult a qualified Pakistani advocate specializing in ${selectedCategory}.`
-        : `🇵🇰 **Advocaid - Pakistani Legal Guidance**: I apologize, but I'm experiencing technical difficulties with the AI service. Error: ${error.message}. Please try again in a moment. For immediate assistance, please consult a qualified Pakistani advocate.`;
+        ? `🇵🇰 **Advocaid - ${selectedCategory} Legal Guidance**: I apologize, but I'm experiencing technical difficulties with the AI service. Error: ${errMsg}. Please try again in a moment. For immediate assistance, please consult a qualified Pakistani advocate specializing in ${selectedCategory}.`
+        : `🇵🇰 **Advocaid - Pakistani Legal Guidance**: I apologize, but I'm experiencing technical difficulties with the AI service. Error: ${errMsg}. Please try again in a moment. For immediate assistance, please consult a qualified Pakistani advocate.`;
       
-      return fallbackResponse + "\n\n⚖️ **Legal Disclaimer**: This analysis is provided by Advocaid and is based on Pakistani Constitution, relevant laws, and court precedents. For specific legal advice, consult a qualified Pakistani advocate licensed by Pakistan Bar Council.";
+      return fallbackResponse + `\n\n${LEGAL_DISCLAIMER}`;
     }
   };
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+  // Accept an optional overrideInput so Retry can call this with the last user message.
+  const handleSend = async (overrideInput?: string) => {
+    const messageText = (overrideInput !== undefined) ? overrideInput : input;
+    if (!messageText.trim() || isLoading) return;
 
+    // store last message for retry attempts
+    lastUserMessageRef.current = messageText;
     const userMessage: Message = {
       id: Date.now().toString(),
-      text: input,
+      text: messageText,
       isBot: false,
       timestamp: new Date(),
     };
 
     setMessages(prev => [...prev, userMessage]);
-    setInput("");
+    // only clear the input if not a retry (overrideInput undefined)
+    if (overrideInput === undefined) setInput("");
     setIsLoading(true);
     setIsTyping(true);
 
     try {
-      const aiResponse = await generatePakistaniLegalResponse(input);
+      const aiResponse = await generatePakistaniLegalResponse(messageText);
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: aiResponse,
@@ -347,6 +367,16 @@ Format your response with proper headings and structure for easy reading.`;
       setIsTyping(false);
     }
   };
+
+  // Retry last user message
+  const handleRetry = () => {
+    if (!lastUserMessageRef.current) return;
+    setNetworkError(null);
+    // call handleSend with the stored message (overrideInput)
+    handleSend(lastUserMessageRef.current);
+  };
+  
+  const dismissNetworkError = () => setNetworkError(null);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -420,6 +450,23 @@ Format your response with proper headings and structure for easy reading.`;
           </div>
         </div>
       </div>
+
+      {/* Network error banner (dismissible) */}
+      {networkError && (
+        <div className="p-3 bg-red-50 dark:bg-red-900/60 border-t border-b border-red-200 dark:border-red-700 text-red-800 dark:text-red-100 flex items-center justify-between space-x-4">
+          <div className="flex-1 text-sm">
+            {networkError}
+          </div>
+          <div className="flex items-center space-x-2">
+            <Button onClick={handleRetry} size="sm" className="bg-red-600 text-white hover:bg-red-700">
+              Retry
+            </Button>
+            <Button variant="ghost" size="sm" onClick={dismissNetworkError}>
+              Dismiss
+            </Button>
+          </div>
+        </div>
+      )}
 
       {/* Messages */}
       <ScrollArea ref={scrollAreaRef} className="flex-1 p-6 bg-gradient-to-b from-white/80 to-slate-50/80 dark:from-slate-800/50 dark:to-slate-900/70 backdrop-blur-sm">
@@ -495,7 +542,7 @@ Format your response with proper headings and structure for easy reading.`;
           </div>
           
           <Button 
-            onClick={handleSend} 
+            onClick={() => handleSend()} 
             disabled={!input.trim() || isLoading}
             className="h-12 px-6 bg-gradient-to-r from-[#080278] to-[#1a1a9e] hover:from-[#1a1a9e] hover:to-[#2d2daa] disabled:from-slate-400 disabled:to-slate-500 dark:disabled:from-slate-700 dark:disabled:to-slate-600 transition-all duration-200 shadow-lg text-white border-0"
           >
