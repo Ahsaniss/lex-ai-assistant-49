@@ -64,7 +64,9 @@ export default {
 				},
 				'chat-bot': 'hsl(var(--chat-bot-bubble))',
 				'chat-user': 'hsl(var(--chat-user-bubble))',
-				'legal-warning': 'hsl(var(--legal-warning))'
+				'gcuf-warning': 'hsl(var(--gcuf-warning))',
+				'gcuf-navy': '#1a365d',
+				'gcuf-gold': '#d69e2e'
 			},
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
