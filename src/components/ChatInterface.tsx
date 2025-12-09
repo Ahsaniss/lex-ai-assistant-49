@@ -155,7 +155,7 @@ const MessageBubble = ({ message, onCopy, onFeedback }: {
 };
 
 // Initialize Google AI with your API key
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_AI_API_KEY || "AIzaSyCC5MM-ggzIxAvpJj-q0JcEL2MxsjVzWHI");
+const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_AI_API_KEY || "AIzaSyBFP3ZRyroefnPH3hmlfOnZg0PcgPPMsxg");
 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 // Add constants for consistent messaging
