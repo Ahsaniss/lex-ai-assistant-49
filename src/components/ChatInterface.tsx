@@ -159,18 +159,17 @@ const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GOOGLE_AI_API_KEY || "
 const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
 // Add constants for consistent messaging
-const NETWORK_ERROR_MESSAGE = "🇵🇰 Advocaid - Network Error: Unable to connect to the AI service. Please check your internet connection and try again.";
+const NETWORK_ERROR_MESSAGE = "🎓 GCUF Career AI - Network Error: Unable to connect to the AI service. Please check your internet connection and try again.";
 const NETWORK_ERROR_BANNER = "Network Error: Unable to connect to the AI service. Please check your internet connection and try again.";
-const LEGAL_DISCLAIMER = "⚖️ Legal Disclaimer: This analysis is provided by Advocaid and is based on Pakistani Constitution, relevant laws, and court precedents. For specific legal advice, consult a qualified Pakistani advocate licensed by Pakistan Bar Council.";
-
+const CAREER_DISCLAIMER = "🎓 Note: This guidance is provided by GCUF Career AI for informational purposes. For official admission requirements and program details, please visit gcuf.edu.pk or contact the GCUF admissions office.";
 export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
   const [selectedLanguage, setSelectedLanguage] = useState<'english' | 'urdu' | 'both'>('both');
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "1",
       text: selectedCategory 
-        ? `السلام علیکم! I'm your Pakistani Legal Assistant **Advocaid** specialized in ${selectedCategory}. I can help with legal questions according to Pakistani Constitution and law. Select your preferred language above and ask your question.\n\nآپ کی قانونی مدد کے لیے یہاں موجود ہوں۔ اوپر سے اپنی زبان کا انتخاب کریں اور سوال پوچھیں۔`
-        : "السلام علیکم! I'm your Pakistani AI Legal Assistant **Advocaid**. I can help with legal questions according to Pakistani Constitution, PPC, CPC, and court precedents. Select your preferred language above and ask your question.\n\nآپ کی قانونی مدد کے لیے یہاں موجود ہوں۔ اوپر سے اپنی زبان کا انتخاب کریں اور سوال پوچھیں۔",
+        ? `السلام علیکم! I'm your **GCUF Career Counselor AI** specialized in ${selectedCategory}. I can help you explore careers, GCUF programs, and plan your professional future. Select your preferred language above and ask your question.\n\nآپ کے کیریئر کی رہنمائی کے لیے یہاں موجود ہوں۔`
+        : "السلام علیکم! I'm your **GCUF Career Counselor AI**. I can help you explore career paths, understand GCUF programs, and plan your professional future. Select your preferred language above.\n\nآپ کے کیریئر کی رہنمائی کے لیے یہاں موجود ہوں۔",
       isBot: true,
       timestamp: new Date(),
     },

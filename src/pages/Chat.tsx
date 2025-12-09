@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ChatInterface } from "@/components/ChatInterface";
-import { Scale, Home, Heart, Briefcase, Shield, Globe, Building } from "lucide-react";
+import { GraduationCap, Briefcase, Code, FlaskConical, Stethoscope, Building2, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
@@ -11,13 +11,13 @@ export const Chat = () => {
   const categoryFromUrl = searchParams.get("category");
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(categoryFromUrl || undefined);
 
-  const legalCategories = [
-    { id: "family", name: "Family Law", icon: Home, color: "text-red-500" },
-    { id: "property", name: "Property Law", icon: Building, color: "text-blue-500" },
-    { id: "criminal", name: "Criminal Law", icon: Shield, color: "text-orange-500" },
-    { id: "business", name: "Business Law", icon: Briefcase, color: "text-green-500" },
-    { id: "immigration", name: "Immigration", icon: Globe, color: "text-purple-500" },
-    { id: "personal", name: "Personal Injury", icon: Heart, color: "text-pink-500" },
+  const careerCategories = [
+    { id: "business", name: "Business & Management", icon: Briefcase, color: "text-blue-500" },
+    { id: "technology", name: "Technology & IT", icon: Code, color: "text-green-500" },
+    { id: "sciences", name: "Natural Sciences", icon: FlaskConical, color: "text-purple-500" },
+    { id: "healthcare", name: "Healthcare", icon: Stethoscope, color: "text-red-500" },
+    { id: "engineering", name: "Engineering", icon: Building2, color: "text-orange-500" },
+    { id: "arts", name: "Arts & Humanities", icon: Palette, color: "text-pink-500" },
   ];
 
   return (
@@ -27,25 +27,25 @@ export const Chat = () => {
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
             <div className="p-3 bg-primary/10 rounded-full">
-              <Scale className="w-10 h-10 text-primary" />
+              <GraduationCap className="w-10 h-10 text-primary" />
             </div>
           </div>
           <h1 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-2">
-            Legal Chat Assistant
+            GCUF Career Counselor
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Ask questions about any legal matter and get instant, AI-powered guidance
+            Ask about careers, GCUF programs, and get personalized guidance for your future
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar - Legal Categories */}
+          {/* Sidebar - Career Categories */}
           <div className="lg:col-span-1">
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg flex items-center space-x-2">
-                  <Scale className="w-5 h-5" />
-                  <span>Legal Categories</span>
+                  <GraduationCap className="w-5 h-5" />
+                  <span>Career Fields</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
@@ -54,11 +54,11 @@ export const Chat = () => {
                   className="w-full justify-start"
                   onClick={() => setSelectedCategory(undefined)}
                 >
-                  <Scale className="w-4 h-4 mr-2" />
-                  General Legal Help
+                  <GraduationCap className="w-4 h-4 mr-2" />
+                  General Career Help
                 </Button>
                 
-                {legalCategories.map((category) => (
+                {careerCategories.map((category) => (
                   <Button
                     key={category.id}
                     variant={selectedCategory === category.name ? "default" : "ghost"}
@@ -79,23 +79,23 @@ export const Chat = () => {
               </CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <div className="p-3 bg-accent/50 rounded-lg">
-                  <p className="font-medium mb-1">Be Specific</p>
+                  <p className="font-medium mb-1">Share Your Interests</p>
                   <p className="text-muted-foreground">
-                    Provide clear details about your situation for better help
+                    Tell us what subjects you enjoy to get better career recommendations
                   </p>
                 </div>
                 
                 <div className="p-3 bg-accent/50 rounded-lg">
-                  <p className="font-medium mb-1">Ask Follow-ups</p>
+                  <p className="font-medium mb-1">Ask About Programs</p>
                   <p className="text-muted-foreground">
-                    Don't hesitate to ask for clarification or more details
+                    Get details about GCUF faculties and degree programs
                   </p>
                 </div>
                 
                 <div className="p-3 bg-accent/50 rounded-lg">
-                  <p className="font-medium mb-1">Know the Limits</p>
+                  <p className="font-medium mb-1">Explore Options</p>
                   <p className="text-muted-foreground">
-                    This is general information - consult a lawyer for specific cases
+                    Ask about job prospects, skills needed, and career paths
                   </p>
                 </div>
               </CardContent>
@@ -111,21 +111,19 @@ export const Chat = () => {
         </div>
 
         {/* Disclaimer */}
-        <Card className="mt-8 border-legal-warning/30 bg-legal-warning/5">
+        <Card className="mt-8 border-secondary/30 bg-secondary/5">
           <CardContent className="p-6">
             <div className="flex items-start space-x-3">
-              <Shield className="w-6 h-6 text-legal-warning mt-1 flex-shrink-0" />
+              <GraduationCap className="w-6 h-6 text-secondary mt-1 flex-shrink-0" />
               <div>
-                <h3 className="font-semibold text-legal-warning mb-2">
-                  Important Legal Disclaimer
+                <h3 className="font-semibold text-secondary mb-2">
+                  Important Note
                 </h3>
                 <p className="text-sm text-foreground/80 leading-relaxed">
-                  This AI assistant provides general legal information and educational content only. 
-                  It does not constitute legal advice, create an attorney-client relationship, or 
-                  substitute for consultation with a qualified attorney. Laws vary by jurisdiction 
-                  and individual circumstances. For specific legal matters, always consult with a 
-                  licensed attorney in your area. We are not responsible for any actions taken 
-                  based on the information provided by this AI assistant.
+                  This AI assistant provides general career guidance and information about GCUF programs. 
+                  It does not replace official university counseling services. For admission requirements, 
+                  fee structures, and official program details, please visit gcuf.edu.pk or contact the 
+                  GCUF admissions office directly.
                 </p>
               </div>
             </div>
