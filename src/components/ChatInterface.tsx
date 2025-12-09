@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Mic, MicOff, Bot, User, Copy, ThumbsUp, ThumbsDown } from "lucide-react";
+import { Send, Mic, MicOff, Bot, User, Copy, ThumbsUp, ThumbsDown, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -43,7 +43,7 @@ const MessageBubble = ({ message, onCopy, onFeedback }: {
     >
       {message.isBot && (
         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 flex items-center justify-center flex-shrink-0 shadow-lg border-2 border-white/20">
-          <Bot className="w-6 h-6 text-white drop-shadow-sm" />
+          <GraduationCap className="w-6 h-6 text-white drop-shadow-sm" />
         </div>
       )}
       
@@ -162,6 +162,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 const NETWORK_ERROR_MESSAGE = "🎓 GCUF Career AI - Network Error: Unable to connect to the AI service. Please check your internet connection and try again.";
 const NETWORK_ERROR_BANNER = "Network Error: Unable to connect to the AI service. Please check your internet connection and try again.";
 const CAREER_DISCLAIMER = "🎓 Note: This guidance is provided by GCUF Career AI for informational purposes. For official admission requirements and program details, please visit gcuf.edu.pk or contact the GCUF admissions office.";
+
 export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
   const [selectedLanguage, setSelectedLanguage] = useState<'english' | 'urdu' | 'both'>('both');
   const [messages, setMessages] = useState<Message[]>([
@@ -178,9 +179,7 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isListening, setIsListening] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  // New: network error state to show a banner + message
   const [networkError, setNetworkError] = useState<string | null>(null);
-  // New: keep last user message so Retry can resend it
   const lastUserMessageRef = useRef<string | null>(null);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
@@ -202,16 +201,16 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
     const getWelcomeMessage = () => {
       if (selectedLanguage === 'english') {
         return selectedCategory 
-          ? `Welcome! I'm your Pakistani Legal Assistant **Advocaid** specialized in ${selectedCategory}. I can help with legal questions according to Pakistani Constitution and law. How can I help you today?`
-          : "Welcome! I'm your Pakistani AI Legal Assistant **Advocaid**. I can help with legal questions according to Pakistani Constitution, PPC, CPC, and court precedents. How can I assist you today?";
+          ? `Welcome! I'm your **GCUF Career Counselor AI** specialized in ${selectedCategory}. I can help you explore careers, find the right GCUF programs, and plan your professional future. How can I help you today?`
+          : "Welcome! I'm your **GCUF Career Counselor AI**. I can help you explore career paths, discover the right programs at Government College University Faisalabad, and guide your professional journey. How can I assist you today?";
       } else if (selectedLanguage === 'urdu') {
         return selectedCategory 
-          ? `السلام علیکم! میں آپ کا پاکستانی قانونی مددگار **Advocaid** ہوں جو ${selectedCategory} میں مہارت رکھتا ہے۔ میں پاکستانی آئین اور قانون کے مطابق قانونی سوالات میں مدد کر سکتا ہوں۔ آج میں آپ کی کیسے مدد کر سکتا ہوں؟`
-          : "السلام علیکم! میں آپ کا پاکستانی AI قانونی مددگار **Advocaid** ہوں۔ میں پاکستانی آئین، PPC، CPC اور عدالتی نظائر کے مطابق قانونی سوالات میں مدد کر سکتا ہوں۔ میں آپ کی کیسے مدد کر سکتا ہوں؟";
+          ? `السلام علیکم! میں آپ کا **GCUF کیریئر کاؤنسلر AI** ہوں جو ${selectedCategory} میں مہارت رکھتا ہے۔ میں کیریئر کے مواقع، GCUF پروگرامز اور آپ کے پیشہ ورانہ مستقبل کی منصوبہ بندی میں مدد کر سکتا ہوں۔ آج میں آپ کی کیسے مدد کر سکتا ہوں؟`
+          : "السلام علیکم! میں آپ کا **GCUF کیریئر کاؤنسلر AI** ہوں۔ میں کیریئر کے راستے تلاش کرنے، گورنمنٹ کالج یونیورسٹی فیصل آباد کے پروگرامز دریافت کرنے اور آپ کے پیشہ ورانہ سفر کی رہنمائی میں مدد کر سکتا ہوں۔ میں آپ کی کیسے مدد کر سکتا ہوں؟";
       } else {
         return selectedCategory 
-          ? `السلام علیکم! I'm your Pakistani Legal Assistant **Advocaid** specialized in ${selectedCategory}. I can help with legal questions according to Pakistani Constitution and law.\n\nآپ کی قانونی مدد کے لیے یہاں موجود ہوں۔ How can I help you today?`
-          : "السلام علیکم! I'm your Pakistani AI Legal Assistant **Advocaid**. I can help with legal questions according to Pakistani Constitution, PPC, CPC, and court precedents.\n\nآپ کی قانونی مدد کے لیے یہاں موجود ہوں۔ How can I assist you today?";
+          ? `السلام علیکم! I'm your **GCUF Career Counselor AI** specialized in ${selectedCategory}. I can help you explore careers, GCUF programs, and plan your professional future.\n\nآپ کے کیریئر کی رہنمائی کے لیے یہاں موجود ہوں۔ How can I help you today?`
+          : "السلام علیکم! I'm your **GCUF Career Counselor AI**. I can help you explore career paths, discover GCUF programs, and guide your professional journey.\n\nآپ کے کیریئر کی رہنمائی کے لیے یہاں موجود ہوں۔ How can I assist you today?";
       }
     };
 
@@ -225,36 +224,36 @@ export const ChatInterface = ({ selectedCategory }: ChatInterfaceProps) => {
 
   const handleCopyMessage = (text: string) => {
     navigator.clipboard.writeText(text);
-    // You could add a toast notification here
   };
 
   const handleFeedback = (messageId: string, type: 'like' | 'dislike') => {
     console.log(`Feedback for message ${messageId}: ${type}`);
-    // You could store this feedback for improving the AI
   };
 
-  const generatePakistaniLegalResponse = async (userMessage: string): Promise<string> => {
+  const generateCareerCounselingResponse = async (userMessage: string): Promise<string> => {
     try {
       console.log('🔍 Generating AI response for:', userMessage);
       console.log('📊 API Key available:', !!import.meta.env.VITE_GOOGLE_AI_API_KEY);
       console.log('🎯 Selected category:', selectedCategory);
 
       // Create a specialized prompt based on the selected category
-      const categoryContext = {
-        "Family Law": "You are Advocaid, a Pakistani Legal Assistant specialized in Family Law. Focus on Muslim Family Laws Ordinance 1961, Articles 35 & 37 of Pakistan Constitution, Family Courts Act 1964, Dissolution of Muslim Marriages Act 1939, and Sharia provisions as incorporated in Pakistani law.",
-        "Property Law": "You are Advocaid, a Pakistani Legal Assistant specialized in Property Law. Focus on Transfer of Property Act 1882, Registration Act 1908, Articles 23 & 24 of Pakistan Constitution, provincial land laws, and property registration requirements in Pakistan.",
-        "Criminal Law": "You are Advocaid, a Pakistani Legal Assistant specialized in Criminal Law. Focus on Pakistan Penal Code (PPC) 1860, Code of Criminal Procedure (CrPC) 1898, Anti-Terrorism Act 1997, Articles 9-14 of Pakistan Constitution, and criminal justice procedures in Pakistan.",
-        "Business Law": "You are Advocaid, a Pakistani Legal Assistant specialized in Business & Corporate Law. Focus on Companies Act 2017, Contract Act 1872, SECP regulations, Banking Companies Ordinance, and commercial law in Pakistan."
+      const categoryContext: Record<string, string> = {
+        "Business & Management": "You are a GCUF Career Counselor AI specialized in Business & Management careers. Focus on MBA programs, BBA, Commerce, Accounting, Marketing, Finance, Human Resource Management, and related career paths available at GCUF and in Pakistan.",
+        "Technology & IT": "You are a GCUF Career Counselor AI specialized in Technology & IT careers. Focus on Computer Science, Software Engineering, Information Technology, Data Science, AI/ML, Cybersecurity programs at GCUF and technology career opportunities in Pakistan.",
+        "Natural Sciences": "You are a GCUF Career Counselor AI specialized in Natural Sciences careers. Focus on Physics, Chemistry, Biology, Mathematics, Environmental Science, Biotechnology programs at GCUF and scientific research career paths.",
+        "Healthcare": "You are a GCUF Career Counselor AI specialized in Healthcare careers. Focus on Pharmacy, Medical Lab Technology, Nursing, Public Health, Nutrition, and healthcare-related programs at GCUF and medical career opportunities in Pakistan.",
+        "Engineering": "You are a GCUF Career Counselor AI specialized in Engineering careers. Focus on various engineering disciplines, technical programs, and industrial career opportunities available through GCUF education.",
+        "Arts & Humanities": "You are a GCUF Career Counselor AI specialized in Arts & Humanities careers. Focus on English, Urdu Literature, History, Islamic Studies, Psychology, Sociology, Mass Communication, and creative career paths at GCUF."
       };
 
       const systemPrompt = selectedCategory && categoryContext[selectedCategory] 
         ? categoryContext[selectedCategory]
-        : "You are Advocaid, a Pakistani Legal Assistant with expertise in Pakistani Constitutional Law, Pakistan Penal Code, Civil Procedure Code, and Pakistani court precedents.";
+        : "You are a GCUF Career Counselor AI with expertise in career guidance, academic programs at Government College University Faisalabad (GCUF), and professional development in Pakistan.";
 
       // Language-specific instructions
-      const languageInstructions = {
+      const languageInstructions: Record<string, string> = {
         'english': "Please respond ONLY in English. Do not use any Urdu text.",
-        'urdu': "Please respond ONLY in Urdu (اردو). Do not use any English text except for legal terms that don't have Urdu equivalents.",
+        'urdu': "Please respond ONLY in Urdu (اردو). Do not use any English text except for technical terms that don't have Urdu equivalents.",
         'both': "Please provide a comprehensive response in both English and Urdu where appropriate. Use both languages naturally."
       };
 
@@ -264,15 +263,28 @@ Language Preference: ${languageInstructions[selectedLanguage]}
 
 User Question: ${userMessage}
 
-Please provide a comprehensive legal response following these guidelines:
-1. Start with a relevant Pakistani flag emoji (🇵🇰) and introduce yourself as Advocaid
-2. Reference specific Pakistani laws, acts, and constitutional articles
-3. Provide practical legal guidance according to Pakistani jurisdiction
-4. Include relevant court procedures and jurisdictions
+Please provide a comprehensive career counseling response following these guidelines:
+1. Start with a graduation cap emoji (🎓) and introduce yourself as GCUF Career Counselor AI
+2. Reference specific GCUF faculties, departments, and programs when relevant
+3. Provide practical career guidance specific to Pakistan's job market
+4. Include information about:
+   - Relevant GCUF programs and admission requirements
+   - Career prospects and salary expectations in Pakistan
+   - Required skills and qualifications
+   - Industry trends and opportunities
+   - Professional development paths
 5. Use Islamic/Urdu greetings where appropriate (السلام علیکم, etc.)
-6. Be professional yet accessible for Pakistani clients
+6. Be encouraging and supportive while being realistic about career prospects
 7. Follow the language preference specified above
-8. If you are unsure about an answer, politely decline and suggest consulting a qualified Pakistani lawyer.
+8. If asked about something outside career/education scope, politely redirect to career-related topics
+
+GCUF Information:
+- Government College University Faisalabad (GCUF) is a prestigious public university in Punjab, Pakistan
+- Established in 1897, it's one of Pakistan's oldest educational institutions
+- Located in Faisalabad, Punjab, Pakistan
+- Website: gcuf.edu.pk
+- Offers undergraduate, graduate, and doctoral programs across multiple faculties
+- Known for strong programs in Sciences, Business, Arts, and Technology
 
 Format your response with proper headings and structure for easy reading.`;
 
@@ -282,54 +294,45 @@ Format your response with proper headings and structure for easy reading.`;
       const response = await result.response;
       const text = response.text();
       
-      // Clear any existing network error on success
       if (networkError) setNetworkError(null);
       
       console.log('✅ AI Response received successfully');
       console.log('📄 Response length:', text.length);
       
-      // Add legal disclaimer
-      const disclaimer = "\n\n⚖️ **Legal Disclaimer**: This analysis is provided by Advocaid and is based on Pakistani Constitution, relevant laws, and court precedents. For specific legal advice, consult a qualified Pakistani advocate licensed by Pakistan Bar Council.";
+      // Add career disclaimer
+      const disclaimer = "\n\n🎓 **Career Guidance Note**: This guidance is provided by GCUF Career Counselor AI for informational purposes. For official admission requirements, fee structures, and program details, please visit gcuf.edu.pk or contact the GCUF admissions office directly.";
       
       return text + disclaimer;
     } catch (error) {
-      // mark network error state for UI
       const errMsg = (error && (error as any).message) ? (error as any).message : String(error);
       console.error('❌ Error generating AI response:', error);
 
       if (errMsg && (errMsg.includes('fetch') || errMsg.toLowerCase().includes('network') || errMsg.includes('Failed to fetch'))) {
-        // Set banner message only (no disclaimer in banner)
         setNetworkError(NETWORK_ERROR_BANNER);
       }
       
-      // Check if it's an API key issue
       if (error && (error as any).message && (error as any).message.includes('API_KEY')) {
         console.error('🔑 API Key Issue detected');
-        return `🇵🇰 **Advocaid - API Configuration Error**: There seems to be an issue with the AI service configuration. Please check the API key setup.\n\n${LEGAL_DISCLAIMER}`;
+        return `🎓 **GCUF Career AI - API Configuration Error**: There seems to be an issue with the AI service configuration. Please check the API key setup.\n\n${CAREER_DISCLAIMER}`;
       }
       
-      // Check if it's a network issue (return the combined message when detected)
       if (error && (error as any).message && ((error as any).message.includes('fetch') || (error as any).message.includes('network') || errMsg.includes('Failed to fetch'))) {
         console.error('🌐 Network Issue detected');
-        // Return full message with disclaimer for chat bubble
-        return `${NETWORK_ERROR_MESSAGE}\n\n${LEGAL_DISCLAIMER}`;
+        return `${NETWORK_ERROR_MESSAGE}\n\n${CAREER_DISCLAIMER}`;
       }
       
-      // Fallback response if AI fails
       const fallbackResponse = selectedCategory 
-        ? `🇵🇰 **Advocaid - ${selectedCategory} Legal Guidance**: I apologize, but I'm experiencing technical difficulties with the AI service. Error: ${errMsg}. Please try again in a moment. For immediate assistance, please consult a qualified Pakistani advocate specializing in ${selectedCategory}.`
-        : `🇵🇰 **Advocaid - Pakistani Legal Guidance**: I apologize, but I'm experiencing technical difficulties with the AI service. Error: ${errMsg}. Please try again in a moment. For immediate assistance, please consult a qualified Pakistani advocate.`;
+        ? `🎓 **GCUF Career AI - ${selectedCategory} Guidance**: I apologize, but I'm experiencing technical difficulties with the AI service. Error: ${errMsg}. Please try again in a moment. For immediate career counseling assistance, please visit the GCUF Career Services Office or contact gcuf.edu.pk.`
+        : `🎓 **GCUF Career AI - Career Guidance**: I apologize, but I'm experiencing technical difficulties with the AI service. Error: ${errMsg}. Please try again in a moment. For immediate assistance, please visit gcuf.edu.pk or contact the GCUF admissions office.`;
       
-      return fallbackResponse + `\n\n${LEGAL_DISCLAIMER}`;
+      return fallbackResponse + `\n\n${CAREER_DISCLAIMER}`;
     }
   };
 
-  // Accept an optional overrideInput so Retry can call this with the last user message.
   const handleSend = async (overrideInput?: string) => {
     const messageText = (overrideInput !== undefined) ? overrideInput : input;
     if (!messageText.trim() || isLoading) return;
 
-    // store last message for retry attempts
     lastUserMessageRef.current = messageText;
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -339,13 +342,12 @@ Format your response with proper headings and structure for easy reading.`;
     };
 
     setMessages(prev => [...prev, userMessage]);
-    // only clear the input if not a retry (overrideInput undefined)
     if (overrideInput === undefined) setInput("");
     setIsLoading(true);
     setIsTyping(true);
 
     try {
-      const aiResponse = await generatePakistaniLegalResponse(messageText);
+      const aiResponse = await generateCareerCounselingResponse(messageText);
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
         text: aiResponse,
@@ -356,7 +358,7 @@ Format your response with proper headings and structure for easy reading.`;
     } catch (error) {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: "معذرت! I'm Advocaid and I'm experiencing technical difficulties. Please try again later or contact support if the issue persists.",
+        text: "معذرت! I'm the GCUF Career Counselor AI and I'm experiencing technical difficulties. Please try again later or visit gcuf.edu.pk for immediate assistance.",
         isBot: true,
         timestamp: new Date(),
       };
@@ -367,11 +369,9 @@ Format your response with proper headings and structure for easy reading.`;
     }
   };
 
-  // Retry last user message
   const handleRetry = () => {
     if (!lastUserMessageRef.current) return;
     setNetworkError(null);
-    // call handleSend with the stored message (overrideInput)
     handleSend(lastUserMessageRef.current);
   };
   
@@ -403,11 +403,11 @@ Format your response with proper headings and structure for easy reading.`;
         <div className="flex items-center justify-between p-4 relative z-10">
           <div className="flex items-center space-x-3 flex-1 min-w-0">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg border-2 border-white/30 flex-shrink-0">
-              <Bot className="w-7 h-7 text-white drop-shadow-sm" />
+              <GraduationCap className="w-7 h-7 text-white drop-shadow-sm" />
             </div>
             <div className="min-w-0 flex-1">
               <h3 className="font-bold text-lg text-white flex items-center space-x-2 drop-shadow-sm">
-                <span>🇵🇰 Advocaid</span>
+                <span>🎓 GCUF Career AI</span>
                 {selectedCategory && (
                   <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-full border border-white/30 shadow-sm hidden sm:inline">
                     {selectedCategory}
@@ -415,7 +415,7 @@ Format your response with proper headings and structure for easy reading.`;
                 )}
               </h3>
               <p className="text-sm text-white/80 truncate">
-                {selectedCategory ? `Specialized in ${selectedCategory}` : "Pakistani Legal AI Assistant"}
+                {selectedCategory ? `Specialized in ${selectedCategory}` : "Your Career Counselor Assistant"}
               </p>
             </div>
           </div>
@@ -482,7 +482,7 @@ Format your response with proper headings and structure for easy reading.`;
           {isLoading && (
             <div className="flex items-start space-x-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 flex items-center justify-center shadow-lg border-2 border-white/20">
-                <Bot className="w-6 h-6 text-white" />
+                <GraduationCap className="w-6 h-6 text-white" />
               </div>
               <div className="bg-gradient-to-br from-white via-slate-50 to-blue-50 dark:from-slate-800 dark:via-indigo-800 dark:to-slate-900 border border-blue-200 dark:border-indigo-400/30 p-5 rounded-2xl rounded-bl-md shadow-lg max-w-xs">
                 <div className="flex items-center space-x-3">
@@ -492,7 +492,7 @@ Format your response with proper headings and structure for easy reading.`;
                     <div className="w-3 h-3 bg-gradient-to-r from-[#2d2daa] to-[#080278] rounded-full animate-bounce" style={{ animationDelay: "0.4s" }} />
                   </div>
                   <div className="text-sm text-slate-700 dark:text-cyan-200 font-medium">
-                    {isTyping ? "Advocaid is analyzing..." : "Advocaid is thinking..."}
+                    {isTyping ? "GCUF Career AI is analyzing..." : "GCUF Career AI is thinking..."}
                   </div>
                 </div>
                 <div className="mt-3">
@@ -515,9 +515,9 @@ Format your response with proper headings and structure for easy reading.`;
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder={
-                selectedLanguage === 'english' ? "Ask Advocaid your legal question in English..." :
-                selectedLanguage === 'urdu' ? "Advocaid سے اردو میں اپنا قانونی سوال پوچھیں..." :
-                "Ask Advocaid in English or Urdu (اردو میں سوال کریں)..."
+                selectedLanguage === 'english' ? "Ask about careers, GCUF programs, or your future..." :
+                selectedLanguage === 'urdu' ? "کیریئر، GCUF پروگرامز، یا اپنے مستقبل کے بارے میں پوچھیں..." :
+                "Ask about careers, GCUF programs (کیریئر کے بارے میں پوچھیں)..."
               }
               disabled={isLoading}
               className="pr-12 h-12 text-sm placeholder:text-slate-500 dark:placeholder:text-slate-400 border-slate-300 dark:border-slate-600/50 focus:border-[#080278] dark:focus:border-amber-400/50 transition-colors bg-white/80 dark:bg-slate-800/50 text-slate-800 dark:text-slate-200 backdrop-blur-sm"
@@ -557,11 +557,11 @@ Format your response with proper headings and structure for easy reading.`;
         </div>
         
         <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 text-center">
-          🇵🇰 Advocaid - Pakistani Constitutional Law AI • 
+          🎓 GCUF Career Counselor AI • 
           {selectedLanguage === 'english' ? ' English responses' : 
            selectedLanguage === 'urdu' ? ' اردو جوابات' : 
            ' Bilingual responses'} • 
-          General information only • Consult qualified Pakistani lawyer
+          General guidance only • Visit gcuf.edu.pk for official info
         </p>
       </div>
     </div>
